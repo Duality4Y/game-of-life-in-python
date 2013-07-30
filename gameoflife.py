@@ -178,12 +178,14 @@ if __name__ == '__main__':
 	else:
 		table = None
 	
-	max_height,max_width = curses.getmaxyz()
+	stdscr = curses.initscr()
+	stdscr.nodelay(1)
+	
+	#check if passed values do not exeed terminal size limit
+	max_height,max_width = stdscr.getmaxyx()
 	if height >= max_height:
 		height = max_height
 	if width >= max_width:
 		width = max_width
 	
-	stdscr = curses.initscr()
-	stdscr.nodelay(1)
 	curses.wrapper(life, stdscr, height, width, refresh, random, table)
