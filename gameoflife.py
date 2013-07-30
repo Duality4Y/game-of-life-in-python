@@ -182,10 +182,10 @@ if __name__ == '__main__':
 	stdscr.nodelay(1)
 	
 	#check if passed values do not exeed terminal size limit
-	max_height,max_width = stdscr.getmaxyx()
-	if height >= max_height:
+	max_height , max_width = stdscr.getmaxyx()[0],stdscr.getmaxyx()[1]
+	if height > max_height:
 		height = max_height
-	if width >= max_width:
-		width = max_width
+	if width > max_width:
+		width = max_width-1
 	
 	curses.wrapper(life, stdscr, height, width, refresh, random, table)
